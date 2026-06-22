@@ -1,13 +1,13 @@
-import Primitives from "./topics/Primitives";
-import Arrays from "./topics/Arrays";
-import Objects from "./topics/Objects"
-import TypeAllias from "./topics/TypeAllias"
-import ProjectsListPractice from "./topics/ProjectsListPractice"
-import UnionPractice from "./topics/UnionPractise"
-import ProfileCard from "./topics/ProfileCard"
-import StatePractice from "./topics/StatePractice";
-import InputPractice from "./topics/InputPractice";
-import FormPractice from "./topics/FormPractice";
+import Primitives from "./components/Primitives";
+import Arrays from "./components/Arrays";
+import Objects from "./components/Objects"
+import TypeAllias from "./components/TypeAllias"
+import ProjectsListPractice from "./components/ProjectsListPractice"
+import UnionPractice from "./components/UnionPractise"
+import ProfileCard from "./components/ProfileCard"
+import StatePractice from "./components/StatePractice";
+import InputPractice from "./components/InputPractice";
+import FormPractice from "./components/FormPractice";
 import { Link } from "react-router"
 
 export default function App() {

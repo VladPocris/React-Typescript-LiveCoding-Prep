@@ -1,12 +1,12 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router'
-import Projects from "./topics/Projects"
-import Home from "./topics/Home"
-import About from "./topics/About"
-import UsersApiPractice from './topics/UsersApiPractice.tsx'
-import SignupFormPractice from "./topics/SignupFormPractice";
-import StatusMessagePractice from './topics/StatusMessagePractice.tsx'
+import Projects from "./components/Projects.tsx"
+import Home from "./components/Home.tsx"
+import About from "./components/About.tsx"
+import UsersApiPractice from './components/UsersApiPractice.tsx'
+import SignupFormPractice from "./components/SignupFormPractice.tsx";
+import StatusMessagePractice from './components/StatusMessagePractice.tsx'
 import './index.css'
 import App from './App.tsx'
 
