@@ -1,0 +1,329 @@
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #fff;
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+  --accent: #aa3bff;
+  --accent-bg: rgba(170, 59, 255, 0.1);
+  --accent-border: rgba(170, 59, 255, 0.5);
+  --social-bg: rgba(244, 243, 236, 0.5);
+  --shadow:
+    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+@media (max-width: 1024px) {
+  font-size: 16px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+    --accent: #c084fc;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+    --accent-border: rgba(192, 132, 252, 0.5);
+    --social-bg: rgba(47, 48, 58, 0.5);
+    --shadow:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  }
+  #social .button-icon {
+    filter: invert(1) brightness(2);
+  }
+}
+#root {
+  width: 1126px;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-inline: 1px solid var(--border);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+}
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
+/* StatusMessagePractice styles */
+.status-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: var(--bg);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+.status-text {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: var(--text-h);
+}
+.status-message {
+  margin: 1rem 0;
+  font-style: italic;
+}
+.status-btn {
+  padding: 0.5rem 1rem;
+  margin: 0.25rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s, transform 0.1s;
+}
+.status-btn:hover {
+  transform: translateY(-2px);
+}
+.status-btn:active {
+  transform: translateY(0);
+}
+.idle-btn {
+  background: var(--border);
+  color: var(--text-h);
+}
+.idle-btn:hover {
+  background: #d1d0d5;
+}
+.loading-btn {
+  background: var(--accent-bg);
+  color: var(--accent);
+  border: 2px solid var(--accent-border);
+}
+.loading-btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+/* Additional global styling */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+p {
+  margin-bottom: 1rem;
+}
+.topic-section {
+  background: var(--bg);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+ul, ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+li {
+  margin-bottom: 0.25rem;
+}
+button {
+  cursor: pointer;
+  font-family: inherit;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.2s, transform 0.1s;
+}
+button:not(.status-btn):not(.btn-secondary):not(.btn-outline) {
+  background: var(--accent-bg);
+  color: var(--accent);
+  border: 2px solid var(--accent-border);
+  padding: 0.5rem 1rem;
+}
+button:not(.status-btn):not(.btn-secondary):not(.btn-outline):hover {
+  background: var(--accent);
+  color: var(--bg);
+  transform: translateY(-2px);
+}
+button:not(.status-btn):not(.btn-secondary):not(.btn-outline):active {
+  transform: translateY(0);
+}
+input, textarea, select {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--text-h);
+  width: 100%;
+  box-sizing: border-box;
+}
+input:focus, textarea:focus, select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.card {
+  background: var(--bg);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+#root > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+@media (min-width: 768px) {
+  #root > * {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+/* Success and error variables for themes */
+:root {
+  --success-bg: #d4edda;
+  --success-text: #155724;
+  --success-border: #c3e6cb;
+  --error-bg: #f8d7da;
+  --error-text: #721c24;
+  --error-border: #f5c6cb;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --success-bg: #1f3a1f;
+    --success-text: #6bdb91;
+    --success-border: #386641;
+    --error-bg: #4a1a1a;
+    --error-text: #f6b7b7;
+    --error-border: #7a2828;
+  }
+}
+/* Use variables for status buttons */
+.success-btn {
+  background: var(--success-bg);
+  color: var(--success-text);
+  border: 1px solid var(--success-border);
+}
+.success-btn:hover {
+  background: var(--success-border);
+}
+.error-btn {
+  background: var(--error-bg);
+  color: var(--error-text);
+  border: 1px solid var(--error-border);
+}
+.error-btn:hover {
+  background: var(--error-border);
+}
+/* NEW STYLES FOR TOPIC COMPONENTS */
+/* Topic base */
+.topic {
+  background: var(--bg);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Specific topic tweaks */
+.profile-card { text-align: center; }
+.profile-card h1 { margin-bottom: 0.5rem; }
+.profile-card h2 { margin-bottom: 0.5rem; color: var(--text-h); }
+.profile-card p { margin-bottom: 1rem; }
+.state-practice { }
+.info-list { list-style: none; padding: 0; }
+.info-list li { margin-bottom: 0.5rem; padding: 0.5rem; background: var(--accent-bg); border-radius: 4px; }
+.error-text { color: var(--error-text); }
+.input-practice { text-align: center; }
+.topic-input { width: 100%; max-width: 400px; padding: 0.75rem; font-size: 1rem; }
+.form-practice { max-width: 500px; }
+.practice-form { display: flex; flex-direction: column; gap: 1rem; }
+.form-input { padding: 0.75rem; font-size: 1rem; }
+.form-button { align-self: flex-start; padding: 0.75rem 1.5rem; font-size: 1rem; }
+.form-error { min-height: 1.5em; /* reserve space */ color: var(--error-text); font-size: 0.9rem; }
+.submitted-name { margin-top: 1rem; font-size: 1.2rem; color: var(--success-text); }
+.home-page, .about-page, .projects-page { text-align: center; }
+.home-page h1, .about-page h1, .projects-page h1 { margin-bottom: 1rem; }
+.users-api-practice { max-width: 800px; }
+.search-input { width: 100%; max-width: 500px; padding: 0.75rem; margin-bottom: 1rem; }
+.status-message { font-style: italic; color: var(--text); margin: 0.5rem 0; }
+.error-message { color: var(--error-text); margin-bottom: 1rem; }
+.retry-button { align-self: flex-start; }
+.user-list { list-style: none; padding: 0; }
+.user-item { background: var(--accent-bg); border-radius: 4px; padding: 1rem; margin-bottom: 0.5rem; }
+.user-item p { margin: 0.25rem 0; }
+.signup-form { max-width: 500px; }
+.signup-form-inner { display: grid; gap: 1.5rem; }
+.signup-form-inner label { font-weight: 500; }
+.form-input { width: 100%; padding: 0.75rem; font-size: 1rem; }
+.form-button { justify-self: start; padding: 0.75rem 1.5rem; }
+.form-error { color: var(--error-text); font-size: 0.9rem; min-height: 1.5em; }
+.success-message { color: var(--success-text); font-weight: 500; }
+/* Navbar styling */
+nav { display: flex; gap: 2rem; justify-content: center; margin: 2rem 0; }
+nav a { font-weight: 500; padding: 0.5rem 1rem; border-radius: 4px; transition: background-color 0.2s; }
+nav a:hover { background: var(--accent-bg); }
+nav a.active { background: var(--accent); color: var(--bg); }
+/* Ensure input width not too large in forms */
+.topic input,
+.topic textarea,
+.topic select {
+  width: 100%;
+  max-width: 400px;
+}
