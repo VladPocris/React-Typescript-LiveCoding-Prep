@@ -1,73 +1,171 @@
-# React + TypeScript + Vite
+# React + TypeScript Live Coding Prep
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A collection of frontend interview exercises built with **React**, **TypeScript**, and **Vite**.
 
-Currently, two official plugins are available:
+The goal of this repository is to practice common live-coding interview questions while following clean coding practices and learning modern frontend testing.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- TypeScript
+- Vite
+- Vitest
+- React Testing Library (in progress)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Topics Covered
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### React Fundamentals
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Controlled components
+- Forms
+- State management
+- Event handling
+- Conditional rendering
+- Lists & keys
+- Component composition
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### React Hooks
+
+- useState
+- useEffect
+- Custom hooks (planned)
+
+### TypeScript
+
+- Type-safe props
+- Event typing
+- State typing
+- Utility types
+- Function typing
+
+### Live Coding Challenges
+
+- ✅ Debounced Search
+- ✅ Form Validation
+- 🔄 Tabs Component
+- 🔄 Modal
+- 🔄 Accordion
+- 🔄 Todo App
+- 🔄 Pagination
+- 🔄 Infinite Scroll
+- 🔄 Drag & Drop
+- 🔄 Theme Switcher
+- 🔄 Custom Hooks
+
+---
+
+## Testing
+
+Current testing stack:
+
+- Vitest
+- React Testing Library (in progress)
+
+Current coverage includes:
+
+- Validation function unit tests
+- Edge case testing
+- Boundary testing
+- Multiple validation scenarios
+
+Example test cases:
+
+- Valid input
+- Empty name
+- Spaces-only name
+- Empty email
+- Invalid email
+- Short password
+- Password boundary conditions
+- Multiple invalid fields
+
+---
+
+## Project Structure
+
+```text
+src/
+│
+├── components/
+│
+├── utils/
+│   ├── validateSignupForm.ts
+│   └── validateSignupForm.test.ts
+│
+├── App.tsx
+└── main.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Running the Project
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Install dependencies:
+
+```bash
+npm install
 ```
+
+Start development server:
+
+```bash
+npm run dev
+```
+
+Run unit tests:
+
+```bash
+npm test
+```
+
+---
+
+## Purpose
+
+This repository is intended for interview preparation rather than production development.
+
+The focus is on improving:
+
+- React problem solving
+- TypeScript proficiency
+- Clean code
+- Testing
+- Frontend architecture
+- Communication during live coding interviews
+
+---
+
+## Current Progress
+
+### Completed
+
+- Debounced Search
+- Form Validation
+- Validation Unit Tests (Vitest)
+
+### In Progress
+
+- React Testing Library
+- Component Testing
+
+### Planned
+
+- Performance optimization
+- Async data fetching
+- API integration
+- Custom hooks
+- Advanced React interview questions
+
+---
+
+## Learning Goals
+
+- Write maintainable React applications
+- Improve TypeScript confidence
+- Learn modern frontend testing
+- Prepare for React frontend interviews
+- Build reusable UI patterns
