@@ -146,6 +146,8 @@ The focus is on improving:
 - Debounced Search
 - Form Validation
 - Validation Unit Tests (Vitest)
+- Async data fetching
+- API integration
 
 ### In Progress
 
@@ -155,8 +157,6 @@ The focus is on improving:
 ### Planned
 
 - Performance optimization
-- Async data fetching
-- API integration
 - Custom hooks
 - Advanced React interview questions
 
