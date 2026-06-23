@@ -22,6 +22,30 @@ describe("SignupFormPractice", () => {
         expect(screen.getByText("Please specify your email.")).toBeInTheDocument();
         expect(screen.getByText("The password must be 8 characters long or more.")).toBeInTheDocument();
     });
+    it("shows validation errors for invalid email", async () => {
+        render(<SignupFormPractice />);
+        const submitBtn = screen.getByRole("button", {name: "Submit Form"});
+        const user = userEvent.setup()
+
+        await user.type(screen.getByLabelText("Name"), "Tom");
+        await user.type(screen.getByLabelText("Email"), "Tomtest.com");
+        await user.type(screen.getByLabelText("Password"), "testing1")
+        await user.click(submitBtn);
+
+        expect(screen.getByText("Please include @")).toBeInTheDocument();
+    });
+    it("shows validation errors for short password", async () => {
+        render(<SignupFormPractice />);
+        const submitBtn = screen.getByRole("button", {name: "Submit Form"});
+        const user = userEvent.setup()
+
+        await user.type(screen.getByLabelText("Name"), "Tom");
+        await user.type(screen.getByLabelText("Email"), "Tom@test.com");
+        await user.type(screen.getByLabelText("Password"), "test");
+        await user.click(submitBtn);
+
+        expect(screen.getByText("The password must be 8 characters long or more.")).toBeInTheDocument();
+    });
     it("submits successfully with valid inputs", async () => {
         render(<SignupFormPractice />);
         const nameInput = screen.getByLabelText("Name");
