@@ -1,9 +1,10 @@
 import UsersApiPractice from './UsersApiPractice';
-import { render, screen } from '@testing-library/react'
+import { act, fireEvent, render, screen } from '@testing-library/react'
 import { describe, it, expect, vi, afterEach } from 'vitest'
 
 describe('UsersApiPractice API states', () => {
     afterEach(() => {
+        vi.useRealTimers();
         vi.unstubAllGlobals();
     })
 
@@ -28,5 +29,26 @@ describe('UsersApiPractice API states', () => {
         render(<UsersApiPractice />)
 
         expect(await screen.findByText("Error: HTTP error! Status: 500")).toBeInTheDocument();
+    });
+    it('debounce search should update after 500ms when user stops typing', async () => {
+        vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => [{ id: 1, name: "Test", email: "test@mail.com" }, { id: 2, name: "Leanne Graham", email: "test@mail.com" }] }));
+
+        render(<UsersApiPractice/>);
+
+        expect(await screen.findByText("Name: Leanne Graham")).toBeInTheDocument();
+        expect(await screen.findByText("Name: Test")).toBeInTheDocument();
+
+        vi.useFakeTimers()
+        const searchInput = screen.getByPlaceholderText("Search users...");
+
+        fireEvent.change(searchInput, { target: { value: "L" } });
+        expect(screen.getByText("Name: Test")).toBeInTheDocument();
+
+        act(()=> {
+            vi.advanceTimersByTime(500);
+        })
+
+        expect(screen.getByText("Name: Leanne Graham")).toBeInTheDocument();
+        expect(screen.queryByText("Name: Test")).not.toBeInTheDocument();
     });
 })
