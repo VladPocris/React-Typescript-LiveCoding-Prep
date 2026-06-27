@@ -1,5 +1,6 @@
 import UsersApiPractice from './UsersApiPractice';
 import { act, fireEvent, render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi, afterEach } from 'vitest'
 
 describe('UsersApiPractice API states', () => {
@@ -54,15 +55,38 @@ describe('UsersApiPractice API states', () => {
     it("shows error when fetch rejects", async () => {
         vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("Network Error")));
 
-        render(<UsersApiPractice/>)
+        render(<UsersApiPractice />)
 
         expect(await screen.findByText(/Error: Network Error/i)).toBeInTheDocument();
     });
     it("shows no users found when API returns an empty list", async () => {
-        vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ok: true, json: async () => []}))
+        vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => [] }))
 
-        render(<UsersApiPractice/>)
+        render(<UsersApiPractice />)
 
         expect(await screen.findByText("No users found.")).toBeInTheDocument();
+    });
+    it("shows no users found when search has no matches", async () => {
+        vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => [{ id: 1, name: "Test", email: "Test@mail.com" }, { id: 2, name: "Leane", email: "Leane@mail.com" }] }))
+
+        render(<UsersApiPractice />)
+
+        expect(await screen.findByText("Name: Test")).toBeInTheDocument();
+        expect(await screen.findByText("Name: Leane")).toBeInTheDocument();
+
+        vi.useFakeTimers()
+
+        fireEvent.change(screen.getByPlaceholderText("Search users..."), { target: { value: "zzz" } });
+        expect(screen.getByText("Name: Test")).toBeInTheDocument();
+        expect(screen.getByText("Name: Leane")).toBeInTheDocument();
+
+        act(() => {
+            vi.advanceTimersByTime(500);
+        })
+
+        expect(screen.getByText("No users found.")).toBeInTheDocument();
+        expect(screen.queryByText("Name: Test")).not.toBeInTheDocument();
+        expect(screen.queryByText("Name: Leane")).not.toBeInTheDocument();
+
     })
 })
