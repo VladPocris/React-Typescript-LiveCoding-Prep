@@ -96,13 +96,14 @@ export default function UsersApiPractice() {
                 )
             }
             <ul className="user-list">
-                {
-                    usersToDisplay.map(user => (
+                {usersToDisplay.length > 0
+                    ? usersToDisplay.map(user => (
                         <li key={user.id} className="user-item">
                             <p>Name: {user.name}</p>
                             <p>Email: {user.email}</p>
                         </li>
                     ))
+                    : <p>No users found.</p>
                 }
             </ul>
         </div >

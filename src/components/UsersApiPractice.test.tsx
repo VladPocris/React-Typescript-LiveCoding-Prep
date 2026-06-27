@@ -58,4 +58,11 @@ describe('UsersApiPractice API states', () => {
 
         expect(await screen.findByText(/Error: Network Error/i)).toBeInTheDocument();
     });
+    it("shows no users found when API returns an empty list", async () => {
+        vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ok: true, json: async () => []}))
+
+        render(<UsersApiPractice/>)
+
+        expect(await screen.findByText("No users found.")).toBeInTheDocument();
+    })
 })
