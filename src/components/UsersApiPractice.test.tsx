@@ -9,7 +9,7 @@ describe('UsersApiPractice API states', () => {
     })
 
     it('shows loading while users are being fetched', () => {
-        vi.stubGlobal("fetch", vi.fn(() => new Promise(() => {})));
+        vi.stubGlobal("fetch", vi.fn(() => new Promise(() => { })));
 
         render(<UsersApiPractice />)
 
@@ -24,7 +24,7 @@ describe('UsersApiPractice API states', () => {
         expect(await screen.findByText("Email: test@mail.com")).toBeInTheDocument();
     });
     it('shows error when response is not ok', async () => {
-        vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: false, status: 500}));
+        vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: false, status: 500 }));
 
         render(<UsersApiPractice />)
 
@@ -33,7 +33,7 @@ describe('UsersApiPractice API states', () => {
     it('debounce search should update after 500ms when user stops typing', async () => {
         vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => [{ id: 1, name: "Test", email: "test@mail.com" }, { id: 2, name: "Leanne Graham", email: "test@mail.com" }] }));
 
-        render(<UsersApiPractice/>);
+        render(<UsersApiPractice />);
 
         expect(await screen.findByText("Name: Leanne Graham")).toBeInTheDocument();
         expect(await screen.findByText("Name: Test")).toBeInTheDocument();
@@ -44,11 +44,18 @@ describe('UsersApiPractice API states', () => {
         fireEvent.change(searchInput, { target: { value: "L" } });
         expect(screen.getByText("Name: Test")).toBeInTheDocument();
 
-        act(()=> {
+        act(() => {
             vi.advanceTimersByTime(500);
         })
 
         expect(screen.getByText("Name: Leanne Graham")).toBeInTheDocument();
         expect(screen.queryByText("Name: Test")).not.toBeInTheDocument();
+    });
+    it("shows error when fetch rejects", async () => {
+        vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("Network Error")));
+
+        render(<UsersApiPractice/>)
+
+        expect(await screen.findByText(/Error: Network Error/i)).toBeInTheDocument();
     });
 })
