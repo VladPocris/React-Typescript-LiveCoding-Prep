@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import useDebounce from "../utils/useDebounce";
 
 type User = {
     id: number;
@@ -8,11 +9,9 @@ type User = {
 
 export default function UsersApiPractice() {
     const [users, setUsers] = useState<User[]>([])
-    const [isFetching, setIsFetching] = useState<boolean>(true)
-    const [isSearching, setIsSearching] = useState<boolean>(false)
+    const [isFetching, setIsFetching] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const [query, setQuery] = useState<string>("");
-    const [debouncedQuery, setDebouncedQuery] = useState<string>("");
 
     function handleFetchAPICallUsers(controller?: AbortController) {
         const url = "https://jsonplaceholder.typicode.com/users"
@@ -53,25 +52,12 @@ export default function UsersApiPractice() {
         return () => { controller.abort() }
     }, [])
 
-    useEffect(() => {
-        const handler = handleDebounce(query);
-        return () => clearTimeout(handler);
-    }, [query])
-
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
         const value = e.target.value;
         setQuery(value);
-        setIsSearching(value.length > 0);
     }
 
-    function handleDebounce(value: string) {
-        const handler = setTimeout(() => {
-            setDebouncedQuery(value);
-            setIsSearching(false);
-        }, 500)
-        return handler;
-    }
-
+    const [ debouncedQuery, isSearching ] = useDebounce(query, 500);
     const filteredUsers = users.filter(user => (user.name.toLowerCase().includes(debouncedQuery.toLowerCase())))
     const usersToDisplay = query.length > 0 ? filteredUsers : users;
 
